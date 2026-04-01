@@ -22,7 +22,7 @@ struct WordCodeView: View {
     var body: some View {
         HStack(spacing: 8) {
             ForEach(code.pegs.indices, id: \.self) { index in
-                PegView(peg: code.pegs[index])
+                PegView(peg: code.pegs[index], match: code.matches?[index])
                     .overlay {
                         // Current peg highlighted
                         if selectedIndex == index && code.kind == .guess {

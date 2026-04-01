@@ -11,25 +11,32 @@ struct PegView: View {
     
     // MARK: Data In
     let peg: Peg
+    let match: Match?
     
     // MARK: - Body
 
     let pegShape = RoundedRectangle(cornerRadius: 10)
     
-    init(peg: Peg) {
+    init(peg: Peg, match: Match? = nil) {
         self.peg = peg
+        self.match = match
     }
     
     var body: some View {
-        Text(peg)
-            .font(.system(size: 60))
-            .minimumScaleFactor(12/60)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .aspectRatio(1, contentMode: .fit)
-            .overlay {
-                pegShape
-                    .strokeBorder(Color.primary.opacity(0.5), lineWidth: 2)
+        VStack(spacing: 4) {
+            if let match {
+                MatchMarker(match: match)
             }
+            Text(peg)
+                .font(.system(size: 60))
+                .minimumScaleFactor(12/60)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .aspectRatio(1, contentMode: .fit)
+        .overlay {
+            pegShape
+                .strokeBorder(Color.primary.opacity(0.5), lineWidth: 2)
+        }
     }
 }
 

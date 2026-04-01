@@ -34,7 +34,8 @@ struct WordBreakerView: View {
                         // Guess button
                         Button("Guess") {
                             game.attemptGuess()
-                            selectedPegIndex = 0 // Reset selection nakon guess-a
+                            // Reset selection
+                            selectedPegIndex = 0
                         }
                         .disabled(game.guess.pegs.contains(WordCode.missingPeg))
                     }
@@ -59,7 +60,8 @@ struct WordBreakerView: View {
                 let randomLength = Int.random(in: 3...6)
                 if let masterWord = words.random(length: randomLength) {
                     game.restartGame(masterWord: masterWord)
-                    selectedPegIndex = 0 // Reset selection
+                    // Reset selection
+                    selectedPegIndex = 0
                 }
             }
         }
